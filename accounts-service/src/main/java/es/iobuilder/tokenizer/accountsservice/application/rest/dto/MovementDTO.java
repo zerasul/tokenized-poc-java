@@ -25,13 +25,13 @@ public class MovementDTO {
     /**
      * Origin Account (can be null for deposits).
      */
-    private AccountEntity originAccount;
+    private AccountDTO originAccount;
 
 
     /**
      * Destination account (Must be an existing account).
      */
-    private AccountEntity destinationAccount;
+    private AccountDTO destinationAccount;
 
 
     /**

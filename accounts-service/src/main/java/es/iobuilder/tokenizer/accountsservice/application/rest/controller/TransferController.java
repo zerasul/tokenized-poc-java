@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 /**
  * Transfer Controller. EntryPoint for the Transfers
  */
@@ -50,6 +52,14 @@ public class TransferController {
 
         //This is only for demostration pruposes.
         // Of course we need to validate all the information and the user's account information.
+        if(Objects.isNull(input)){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
+        if(Objects.isNull(input.getCurrency())){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
 
         try {
             Movement movement=movementService.createTransfer(input.getAmount(),input.getOriginAccount(),input.getDestinationAccount(),input.getCurrency());

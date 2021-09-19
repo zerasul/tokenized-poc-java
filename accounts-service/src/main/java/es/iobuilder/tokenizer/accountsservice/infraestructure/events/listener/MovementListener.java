@@ -7,12 +7,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+/**
+ * Movement Event listner. This class lisent the creation Movement Events and create a new Movement.
+ */
 @Slf4j
 @Component
 public class MovementListener  implements ApplicationListener<MovementEvent> {
 
+    /**
+     * Movement Repository
+     */
     MovementRepository repository;
 
+    /**
+     * When a new Movement Event occurs this method is called
+     * @param movementEvent Movement Event
+     */
     @Override
     public void onApplicationEvent(MovementEvent movementEvent) {
         //This is only for demostration pruposes; we can use another implementations of asyncrunous events system.

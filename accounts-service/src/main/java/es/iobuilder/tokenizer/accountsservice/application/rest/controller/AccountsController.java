@@ -93,7 +93,7 @@ public class AccountsController {
         }
         //We use a generated random UUID as account Number; this is only for demostration pruposes.
         return new ResponseEntity<>(accountMapper.toDTO(accountService.createAccount(input.getName(), UUID.randomUUID().toString(), input.getUser())),
-                HttpStatus.OK);
+                HttpStatus.CREATED);
 
 
     }

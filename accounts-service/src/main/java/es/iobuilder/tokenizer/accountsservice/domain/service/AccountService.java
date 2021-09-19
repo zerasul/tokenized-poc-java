@@ -45,7 +45,7 @@ public class AccountService {
      */
     public List<Account> getAccountsFromUser(Long user){
 
-        List<AccountEntity> accountList = accountRepository.findByuser(user);
+        List<AccountEntity> accountList = accountRepository.findAccountByUser(user);
 
         //ONly for demostration pruposes; we can implement a new Mapper.
 
