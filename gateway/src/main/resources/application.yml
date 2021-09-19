@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user
+          uri: http://localhost:9000
+          predicates:
+            - Path=/user/
+        - id: accounts
+          uri: http://localhost:8082
+          predicates:
+            - Path=/accounts/
+        - id: transfers
+          uri: http://localhost:8082
+          predicates:
+            - Path=/transfer/
+        - id: deposits
+          uri: http://localhost:8082
+          predicates:
+            - Path=/deposit/

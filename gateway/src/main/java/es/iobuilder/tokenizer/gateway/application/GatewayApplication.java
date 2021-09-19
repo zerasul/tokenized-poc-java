@@ -1,4 +1,4 @@
-package es.iobuilder.tokenizer.gateway;
+package es.iobuilder.tokenizer.gateway.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
