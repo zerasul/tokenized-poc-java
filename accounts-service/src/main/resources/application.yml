@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${env.db_host}/${env.db_name}?serverTimezone=UTC&useLegacyDatetimeCode=false&pinGlobalTxToPhysicalConnection=true
+    username: ${env.db_user}
+    password: ${env.db_password}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://auth-server:9000

@@ -1,0 +1,23 @@
+server:
+  port: 9000
+app:
+  user:
+    oauth:
+    clientId: "clientId"
+    clientSecret: "123456"
+    redirectUris: http://localhost:8082/login/oauth2/code/
+logging:
+  level:
+    root: INFO
+spring:
+  application:
+    name: auth-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${env.db_host}/${env.db_name}?serverTimezone=UTC&useLegacyDatetimeCode=false&pinGlobalTxToPhysicalConnection=true
+    username: ${env.db_user}
+    password: ${env.db_password}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
