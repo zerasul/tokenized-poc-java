@@ -4,6 +4,7 @@ package es.iobuilder.tokenizer.accountsservice.infraestructure.events.listener;
 import es.iobuilder.tokenizer.accountsservice.infraestructure.events.model.MovementEvent;
 import es.iobuilder.tokenizer.accountsservice.infraestructure.repositories.MovementRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,16 @@ public class MovementListener  implements ApplicationListener<MovementEvent> {
     /**
      * Movement Repository
      */
-    MovementRepository repository;
+    private MovementRepository repository;
+
+    /**
+     * Constructor
+     * @param movementRepository Movement Repository
+     */
+    @Autowired
+    public MovementListener(MovementRepository movementRepository){
+        this.repository=movementRepository;
+    }
 
     /**
      * When a new Movement Event occurs this method is called
