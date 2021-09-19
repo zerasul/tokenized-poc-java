@@ -1,5 +1,8 @@
 server:
   port: 8080
+logging:
+  level:
+   root: INFO
 spring:
   cloud:
     gateway:
@@ -20,3 +23,8 @@ spring:
           uri: http://localhost:8082
           predicates:
             - Path=/deposit/
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
