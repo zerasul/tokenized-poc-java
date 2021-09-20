@@ -1,4 +1,4 @@
-# tokenized-poc-java
+# Tokenized-poc-java
 
 This is the Tokenized Money PoC implementation Repository. This document contains all the information about this implementation. You can see the next Modules:
 
