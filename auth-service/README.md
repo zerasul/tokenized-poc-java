@@ -42,10 +42,10 @@ grant_type=authorization_code
 
 ```json
 {
-        “access_token”:”2YotnFZFEjr1zCsicMWpAA”,
-        “token_type”:”example”,
-        “expires_in”:3600,
-        “refresh_token”:”tGzv3JOkF0XG5Qx2TIKWIA”
+        "access_token":"2YotnFZFEjr1zCsicMWpAA",
+        "token_type":"example",
+        "expires_in":3600,
+        "refresh_token":"tGzv3JOkF0XG5Qx2TIKWIA"
 }
 ```
 
@@ -69,3 +69,6 @@ POST http://localhost:8080/user/
 This endpoint return you Saved User. Now You can Log in Using Oauth to Our System.
 
 **NOTE**: For demostration pruposes all the users use the same ```client_id``` and ```client_secret```.
+
+**NOTE2**: You need to add to your ```/etc/hosts``` or ```c:\Windows\System32\Driver\etc\hosts``` the next line
+```127.0.0.1 auth-server```. This is needed for demostration pruposes and for minimize CORS errors.
