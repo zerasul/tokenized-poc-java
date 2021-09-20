@@ -1,6 +1,6 @@
 # tokenized-poc-java
 
-This is de Tokenized Money PoC implementation Repository. This document contains all the information about this implementation. You can see the next Modules:
+This is the Tokenized Money PoC implementation Repository. This document contains all the information about this implementation. You can see the next Modules:
 
 * Gateway Module: Gateway for access all the API.
 * Configuration Service: Configuration Service, for acces all the externalized Properties.
