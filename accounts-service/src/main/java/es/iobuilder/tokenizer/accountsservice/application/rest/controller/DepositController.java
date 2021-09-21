@@ -3,14 +3,14 @@ package es.iobuilder.tokenizer.accountsservice.application.rest.controller;
 import es.iobuilder.tokenizer.accountsservice.application.rest.dto.MovementDTO;
 import es.iobuilder.tokenizer.accountsservice.application.rest.input.DepositInput;
 import es.iobuilder.tokenizer.accountsservice.application.rest.mapper.MovementMapper;
+import es.iobuilder.tokenizer.accountsservice.domain.Movement;
 import es.iobuilder.tokenizer.accountsservice.domain.exceptions.AccountNotFoundException;
+import es.iobuilder.tokenizer.accountsservice.domain.exceptions.MovementNotFoundException;
 import es.iobuilder.tokenizer.accountsservice.domain.service.MovementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
 
@@ -42,6 +42,21 @@ public class DepositController {
         this.movementMapper=movementMapper;
     }
 
+    /**
+     * Get an existing Deposit
+     * @param id Deposit Id
+     * @return Movement Object
+     */
+    @GetMapping("/deposit/{id}")
+    public ResponseEntity<MovementDTO> getDeposit(@PathVariable("id")Long id){
+        
+         try {
+            Movement movement=movementService.getMovement(id);
+            return new ResponseEntity<>(movementMapper.toDTO(movement), HttpStatus.OK);
+        } catch (MovementNotFoundException e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
 
     /**
      * Create a new Deposit
