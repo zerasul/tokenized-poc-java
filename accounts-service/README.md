@@ -10,6 +10,8 @@ In this microservice, we have the next REST API:
 * Deposit: Allow to create Money Deposit in one of the wallet of our users.
 * Transfer: allow to Transfer Money withing accounts.
 
+**NOTE**: You need a access token to acess to the API; please see Auth-service readme, for more information.
+
 ### Accounts
 
 This Rest API allows to search create, update, delete accounts (Wallets).
@@ -79,7 +81,7 @@ Account Object:
 Create a new Account
 
 ```curl
-POST <endpoint>/accounts
+POST <endpoint>/
 ```
 
 parameters:
@@ -113,7 +115,7 @@ New Created Account:
 Update an existing Account.
 
 ```curl
-PUT <endpoint>/accounts/{number}
+PUT <endpoint>/{number}
 ```
 
 parameters:
@@ -150,7 +152,7 @@ Updated Account:
 Delete an existing account
 
 ```curl
-DELETE <endpoint>/accounts/{number}
+DELETE <endpoint>/{number}
 ```
 
 Parameters:
@@ -161,3 +163,153 @@ returns:
 
 200: OK
 
+### Deposit
+
+This API allows to create Money deposit To existing Accounts.
+
+```curl
+endpoint: http://localhost:8082/deposit/
+```
+
+#### Get Deposit
+
+Get an existing Deposit
+
+```curl
+GET <endpoint>/{id}
+```
+
+parameters:
+
+id(path): Deposit Id
+
+returns:
+
+Movement Object:
+
+```json
+{
+  "id":1,
+  "transferDate": "21/09/2021 20:23:00",
+  "originAccount": null,
+  "destinationAccount": {account Object},
+  "amount": 0.1,
+  "currency": "BTC"
+}
+```
+
+#### Create Deposit
+
+Create a new Deposit
+
+```curl
+POST <endpoint>/
+```
+
+parameters:
+
+New Deposit Input Object:
+
+```json
+{
+    "destinationNumber":"1111-111-1111",
+    "amount": 0.1,
+    "currency": "BTC"
+}
+```
+
+returns:
+
+Created Movement Object:
+
+```json
+{
+  "id":1,
+  "transferDate": "21/09/2021 20:23:00",
+  "originAccount": null,
+  "destinationAccount": {account Object},
+  "amount": 0.1,
+  "currency": "BTC"
+}
+```
+
+This is an Asynchrunous operation; in this case we use an event implementation for create a message qeue; in this operation we publish a new Movement Event and create in the listener the new Deposit.
+
+The events messages implementation is only for demostration pruposes.
+
+For more information please see ```MovementListener``` Class.
+
+### Transfer
+
+Allow to search and create Money transfers.
+
+```curl
+endpoint: http://localhost:8082/transfer/
+```
+
+#### Get Transfer
+
+Get an existing transfer:
+
+```
+GET <endpoint>/{id}
+```
+
+Parameters:
+
+id(paht): Transfer id.
+
+returns:
+
+```json
+{
+  "id":1,
+  "transferDate": "21/09/2021 20:23:00",
+  "originAccount": null,
+  "destinationAccount": {account Object},
+  "amount": 0.1,
+  "currency": "BTC"
+}
+```
+
+#### Create Transfer
+
+Create a new transfer
+
+```curl
+POST <endpoint>/
+```
+
+Parameters:
+
+New Transfer Input Object:
+
+```json
+{
+    "originNumber": "11111-11-222",
+    "destinationNumber":"1111-111-1111",
+    "amount": 0.1,
+    "currency": "BTC"
+}
+```
+
+returns:
+
+Created Transfer Object:
+
+```json
+{
+  "id":1,
+  "transferDate": "21/09/2021 20:23:00",
+  "originAccount": {account Object},
+  "destinationAccount": {account Object},
+  "amount": 0.1,
+  "currency": "BTC"
+}
+```
+
+This is an Asynchrunous operation; in this case we use an event implementation for create a message qeue; in this operation we publish a new Movement Event and create in the listener the new Deposit.
+
+The events messages implementation is only for demostration pruposes.
+
+For more information please see ```MovementListener``` Class.
